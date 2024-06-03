@@ -219,13 +219,18 @@ const PaymentPage = ({ username }) => {
                         </div>
                     </div>
 
-                    <div className='info flex justify-center items-center mt-10 mb-10 md:mt-24 md:mb-24 flex-col'>
+                    <div className='info flex justify-center items-center mt-10 mb-10 md:mt-20 md:mb-24 flex-col'>
                         <div className="font-bold text-lg">@{username}</div>
                         <div className='text-slate-400'>Let's help {username} to get a Chai</div>
                         <div className='text-slate-400'>
                             {payments.length} Payments Received . ₹ {payments.reduce((a, b) => a + b.amount, 0)}  raised
                         </div>
+                        <div className="container  font-bold flex flex-col gap-2 bg-slate-900 p-5 mt-5 bg-rgb(0 9 29) rounded-xl w-[70vw]">
+                            <div className=" m-auto"> Project : {currentUser.project}</div>
+                            <div className=" m-auto">Project Description: {currentUser.projectDescription}</div>
+                        </div>
                     </div>
+
 
                     <div className='flex items-center justify-around'>
                         <div className="payment flex justify-center gap-5 w-[95%] mb-11 flex-col md:flex-row">
