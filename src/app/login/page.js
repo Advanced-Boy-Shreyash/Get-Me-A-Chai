@@ -1,22 +1,52 @@
 'use client'
-import React from 'react'
-import { useSession, signIn, signOut } from "next-auth/react"
+import React, { useEffect } from 'react'
+import { useSession, signIn } from "next-auth/react"
+import { useRouter } from 'next/navigation'
+import { ToastContainer, toast, Slide } from 'react-toastify';
 
 const Login = () => {
+    const { data: session } = useSession()
+    const router = useRouter()
+    // document.title = "Login - Get Me A Chai"
+
+    useEffect(() => {
+        if (session) {
+            toast.success('Fetching your details ...', {
+                position: "bottom-right",
+                autoClose: 2000,
+                closeOnClick: true,
+                pauseOnHover: false,
+                theme: "dark",
+                transition: Slide
+            })
+            setTimeout(() => {
+                router.push('/dashboard');
+            }, 3000);
+        }
+      }, [session, router]);
+
+    // const { data: session } = useSession()
+    // if (session) {
+    //     const router = useRouter()
+    //     router.push('/dashboard')
+    // }
+
     return (
+        <>
+        <ToastContainer />
         <div className='text-white py-14 container mx-auto'>
 
             <h2 className='text-center font-bold text-3xl'>Login/SignUp to get Support From Fans</h2>
             <div className='flex flex-col gap-2 min-h-screen items-center p-10 container'>
 
-                <div class="flex flex-col gap-2 min-h-screen ">
+                <div className="flex flex-col gap-2 min-h-screen ">
                     <button
-                    onClick={()=>{signIn("google")}}
-                        class="flex gap-2 items-center bg-white border border-gray-300 rounded-lg shadow-md max-w-xs px-6 py-2 text-sm font-medium text-gray-800 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
-                        <svg class="h-6 w-6 mr-2" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink"
+                        onClick={() => { signIn("google") }}
+                        className="flex gap-2 items-center bg-white border border-gray-300 rounded-lg shadow-md max-w-xs px-6 py-2 text-sm font-medium text-gray-800 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
+                        <svg className="h-6 w-6 mr-2" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink"
                             viewBox="-0.5 0 48 48" version="1.1">
 
-                            <g id="Icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                            <g id="Icons" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
                                 <g id="Color-" transform="translate(-401.000000, -860.000000)">
                                     <g id="Google" transform="translate(401.000000, 860.000000)">
                                         <path
@@ -39,69 +69,14 @@ const Login = () => {
                     </button>
 
                     <button
-                    onClick={()=>{signIn("linkedin")}}
-                        class="flex gap-2 items-center bg-white border border-gray-300 rounded-lg shadow-md max-w-xs px-6 py-2 text-sm font-medium text-gray-800 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
-                        <svg class="h-6 w-6 mr-2" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink"
-                            viewBox="0 -2 44 44" version="1.1">
-                            <g id="Icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                <g id="Color-" transform="translate(-702.000000, -265.000000)" fill="#007EBB">
-                                    <path
-                                        d="M746,305 L736.2754,305 L736.2754,290.9384 C736.2754,287.257796 734.754233,284.74515 731.409219,284.74515 C728.850659,284.74515 727.427799,286.440738 726.765522,288.074854 C726.517168,288.661395 726.555974,289.478453 726.555974,290.295511 L726.555974,305 L716.921919,305 C716.921919,305 717.046096,280.091247 716.921919,277.827047 L726.555974,277.827047 L726.555974,282.091631 C727.125118,280.226996 730.203669,277.565794 735.116416,277.565794 C741.21143,277.565794 746,281.474355 746,289.890824 L746,305 L746,305 Z M707.17921,274.428187 L707.117121,274.428187 C704.0127,274.428187 702,272.350964 702,269.717936 C702,267.033681 704.072201,265 707.238711,265 C710.402634,265 712.348071,267.028559 712.41016,269.710252 C712.41016,272.34328 710.402634,274.428187 707.17921,274.428187 L707.17921,274.428187 L707.17921,274.428187 Z M703.109831,277.827047 L711.685795,277.827047 L711.685795,305 L703.109831,305 L703.109831,277.827047 L703.109831,277.827047 Z"
-                                        id="LinkedIn">
-
-                                    </path>
-                                </g>
-                            </g>
-                        </svg> <span>Continue with LinkedIn</span>
-                    </button>
-
-                    <button
-                    onClick={()=>{signIn('twitter')}}
-                        class="flex gap-2 items-center bg-white border border-gray-300 rounded-lg shadow-md max-w-xs px-6 py-2 text-sm font-medium text-gray-800 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
-                        <svg class="h-6 w-6 mr-2" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink"
-                            viewBox="0 -4 48 48" version="1.1">
-                            <g id="Icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                <g id="Color-" transform="translate(-300.000000, -164.000000)" fill="#00AAEC">
-                                    <path
-                                        d="M348,168.735283 C346.236309,169.538462 344.337383,170.081618 342.345483,170.324305 C344.379644,169.076201 345.940482,167.097147 346.675823,164.739617 C344.771263,165.895269 342.666667,166.736006 340.418384,167.18671 C338.626519,165.224991 336.065504,164 333.231203,164 C327.796443,164 323.387216,168.521488 323.387216,174.097508 C323.387216,174.88913 323.471738,175.657638 323.640782,176.397255 C315.456242,175.975442 308.201444,171.959552 303.341433,165.843265 C302.493397,167.339834 302.008804,169.076201 302.008804,170.925244 C302.008804,174.426869 303.747139,177.518238 306.389857,179.329722 C304.778306,179.280607 303.256911,178.821235 301.9271,178.070061 L301.9271,178.194294 C301.9271,183.08848 305.322064,187.17082 309.8299,188.095341 C309.004402,188.33225 308.133826,188.450704 307.235077,188.450704 C306.601162,188.450704 305.981335,188.390033 305.381229,188.271578 C306.634971,192.28169 310.269414,195.2026 314.580032,195.280607 C311.210424,197.99061 306.961789,199.605634 302.349709,199.605634 C301.555203,199.605634 300.769149,199.559408 300,199.466956 C304.358514,202.327194 309.53689,204 315.095615,204 C333.211481,204 343.114633,188.615385 343.114633,175.270495 C343.114633,174.831347 343.106181,174.392199 343.089276,173.961719 C345.013559,172.537378 346.684275,170.760563 348,168.735283"
-                                        id="Twitter">
-
-                                    </path>
-                                </g>
-                            </g>
-                        </svg>
-
-                        <span>Continue with Twitter</span>
-                    </button>
-
-                    <button
-                    onClick={()=>{signIn('facebook')}}
-                        class="flex gap-2 items-center bg-white border border-gray-300 rounded-lg shadow-md max-w-xs px-6 py-2 text-sm font-medium text-gray-800 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
-                        <svg class="h-6 w-6 mr-2" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink"
-                            viewBox="0 0 48 48" version="1.1">
-                            <g id="Icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                <g id="Color-" transform="translate(-200.000000, -160.000000)" fill="#4460A0">
-                                    <path
-                                        d="M225.638355,208 L202.649232,208 C201.185673,208 200,206.813592 200,205.350603 L200,162.649211 C200,161.18585 201.185859,160 202.649232,160 L245.350955,160 C246.813955,160 248,161.18585 248,162.649211 L248,205.350603 C248,206.813778 246.813769,208 245.350955,208 L233.119305,208 L233.119305,189.411755 L239.358521,189.411755 L240.292755,182.167586 L233.119305,182.167586 L233.119305,177.542641 C233.119305,175.445287 233.701712,174.01601 236.70929,174.01601 L240.545311,174.014333 L240.545311,167.535091 C239.881886,167.446808 237.604784,167.24957 234.955552,167.24957 C229.424834,167.24957 225.638355,170.625526 225.638355,176.825209 L225.638355,182.167586 L219.383122,182.167586 L219.383122,189.411755 L225.638355,189.411755 L225.638355,208 L225.638355,208 Z"
-                                        id="Facebook">
-
-                                    </path>
-                                </g>
-                            </g>
-                        </svg>
-
-                        <span>Continue with Facebook</span>
-                    </button>
-
-                    <button
                         onClick={() => { signIn("github") }}
-                        class="flex gap-2 items-center bg-white border border-gray-300 rounded-lg shadow-md max-w-xs px-6 py-2 text-sm font-medium text-gray-800 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
-                        <svg class="h-6 w-6 mr-2" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink"
+                        className="flex gap-2 items-center bg-white border border-gray-300 rounded-lg shadow-md max-w-xs px-6 py-2 text-sm font-medium text-gray-800 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
+                        <svg className="h-6 w-6 mr-2" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink"
                             viewBox="0 0 73 73" version="1.1">
-                            <g id="team-collaboration/version-control/github" stroke="none" stroke-width="1" fill="none"
-                                fill-rule="evenodd">
-                                <g id="container" transform="translate(2.000000, 2.000000)" fill-rule="nonzero">
-                                    <rect id="mask" stroke="#000000" stroke-width="2" fill="#000000" x="-1"
+                            <g id="team-collaboration/version-control/github" stroke="none" strokeWidth="1" fill="none"
+                                fillRule="evenodd">
+                                <g id="container" transform="translate(2.000000, 2.000000)" fillRule="nonzero">
+                                    <rect id="mask" stroke="#000000" strokeWidth="2" fill="#000000" x="-1"
                                         y="-1" width="71" height="71" rx="14">
 
                                     </rect>
@@ -116,31 +91,10 @@ const Login = () => {
 
                         <span>Continue with Github</span>
                     </button>
-
-                    <button
-                    onClick={()=>{signIn('apple')}}
-                        class="flex gap-2 items-center bg-white border border-gray-300 rounded-lg shadow-md max-w-xs px-6 py-2 text-sm font-medium text-gray-800 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
-                        <svg class="h-6 w-6 mr-2" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink"
-                            viewBox="-1.5 0 20 20" version="1.1">
-                            <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                <g id="Dribbble-Light-Preview" transform="translate(-102.000000, -7439.000000)" fill="#000000">
-                                    <g id="icons" transform="translate(56.000000, 160.000000)">
-                                        <path
-                                            d="M57.5708873,7282.19296 C58.2999598,7281.34797 58.7914012,7280.17098 58.6569121,7279 C57.6062792,7279.04 56.3352055,7279.67099 55.5818643,7280.51498 C54.905374,7281.26397 54.3148354,7282.46095 54.4735932,7283.60894 C55.6455696,7283.69593 56.8418148,7283.03894 57.5708873,7282.19296 M60.1989864,7289.62485 C60.2283111,7292.65181 62.9696641,7293.65879 63,7293.67179 C62.9777537,7293.74279 62.562152,7295.10677 61.5560117,7296.51675 C60.6853718,7297.73474 59.7823735,7298.94772 58.3596204,7298.97372 C56.9621472,7298.99872 56.5121648,7298.17973 54.9134635,7298.17973 C53.3157735,7298.17973 52.8162425,7298.94772 51.4935978,7298.99872 C50.1203933,7299.04772 49.0738052,7297.68074 48.197098,7296.46676 C46.4032359,7293.98379 45.0330649,7289.44985 46.8734421,7286.3899 C47.7875635,7284.87092 49.4206455,7283.90793 51.1942837,7283.88393 C52.5422083,7283.85893 53.8153044,7284.75292 54.6394294,7284.75292 C55.4635543,7284.75292 57.0106846,7283.67793 58.6366882,7283.83593 C59.3172232,7283.86293 61.2283842,7284.09893 62.4549652,7285.8199 C62.355868,7285.8789 60.1747177,7287.09489 60.1989864,7289.62485"
-                                            id="apple-[#173]">
-
-                                        </path>
-                                    </g>
-                                </g>
-                            </g>
-                        </svg>
-                        <span>Continue with Apple</span>
-
-                    </button>
                 </div>
             </div>
-
         </div>
+        </>
     )
 }
 
