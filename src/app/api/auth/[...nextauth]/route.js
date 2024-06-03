@@ -53,7 +53,7 @@ export const authoptions = NextAuth({
                 await connectDB();
 
                 try {
-                    console.log("user", user, "account", account, "profile", profile, "email", email, "credentials", credentials);
+                    // console.log("user", user, "account", account, "profile", profile, "email", email, "credentials", credentials);
 
                     const currentUser = await User.findOne({ email: user.email });
                     // console.log("currentUser", currentUser)

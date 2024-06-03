@@ -27,7 +27,7 @@ On the dashboard, developers or project creators can provide the project name, d
 To run this project, you will need to add the following environment variables to your .env.local file
 ```
 NEXT_PUBLIC_URL=http://localhost:3000
-MONGO_URI="mongodb://localhost:27017/get-me-a-chai"
+MONGODB_URI="mongodb://localhost:27017/get-me-a-chai"
 NEXTAUTH_URL=http://localhost:3000
 NEXTAUTH_SECRET=<a secret>
 GITHUB_ID=<your github id>

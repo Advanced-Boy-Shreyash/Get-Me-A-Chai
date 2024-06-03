@@ -67,7 +67,7 @@ const ProfilesPage = () => {
                     <h2 className="text-2xl font-bold">{profile.name}</h2>
                     <p className="text-slate-200">@{profile.username}</p>
                     <p className="text-gray-200">Project: {profile.project || "! Nothing here"}</p>
-                    <p className="text-sm text-gray-100">Raised Funds: {profile.raisedFunds}</p>
+                    <p className="text-sm text-gray-100">Raised Funds: ₹ {profile.raisedFunds}</p>
                   </li>
                 </Link>
               ))}

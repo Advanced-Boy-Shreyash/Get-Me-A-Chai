@@ -81,7 +81,7 @@ const totalRaisedAmount = async (usernames) => {
       }
     ]);
 
-    console.log("payments", payments)
+    // console.log("payments", payments)
 
     // Create a map to track totalAmount for each user
     const userPaymentsMap = new Map();

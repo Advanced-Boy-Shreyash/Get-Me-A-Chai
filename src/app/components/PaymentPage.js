@@ -25,7 +25,7 @@ const PaymentPage = ({ username }) => {
 
     useEffect(() => {
         getData()
-        console.log(getData())
+        // console.log(getData())
     }, [])
 
     const handleChange = (e) => {
@@ -225,10 +225,11 @@ const PaymentPage = ({ username }) => {
                         <div className='text-slate-400'>
                             {payments.length} Payments Received . ₹ {payments.reduce((a, b) => a + b.amount, 0)}  raised
                         </div>
+                        { currentUser.project?
                         <div className="container  font-bold flex flex-col gap-2 bg-slate-900 p-5 mt-5 bg-rgb(0 9 29) rounded-xl w-[70vw]">
-                            <div className=" m-auto"> Project : {currentUser.project}</div>
+                            <div className=" m-auto"> Project : {currentUser.project || `! No Active Project`}</div>
                             <div className=" m-auto">Project Description: {currentUser.projectDescription}</div>
-                        </div>
+                        </div>:<div>No active Project</div>}
                     </div>
 
 

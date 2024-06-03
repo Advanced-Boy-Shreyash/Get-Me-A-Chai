@@ -1,16 +1,22 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
-const connectDB = async () => {
+const connection = {};
+
+async function dbConnect() {
+    if (connection.isConnected) {
+        console.log("Already connected to DB");
+        return;
+    }
+
     try {
-        const conn = await mongoose.connect("mongodb://localhost:27017/get-me-a-chai",{
-            useNewUrlParser : true,
-        })
-        // console.log(`MongoDB Connected: ${conn.connection.host}`)
-        return conn
-    } catch (error){
-        console.log(error.message)
-        process.exit(1)
+        const db = await mongoose.connect(process.env.MONGODB_URI || '', {});
+        connection.isConnected = db.connections[0].readyState;
+
+        console.log('Success: Connected to MongoDB');
+    } catch (error) {
+        console.log("Error connecting to the database", error);
+        process.exit(1);
     }
 }
 
-export default connectDB;
+export default dbConnect;
