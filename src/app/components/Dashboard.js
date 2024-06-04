@@ -22,7 +22,7 @@ const Dashboard = () => {
         } else {
             getUserData()
         }
-    }, [router, session])
+    })
 
     const getUserData = async () => {
         try {

@@ -39,7 +39,7 @@ const Username = ({ params }) => {
           < PaymentPage username={params.username} /> :
           <>
             <div className='flex justify-center items-center mt-2 font-bold text-2xl'>
-              Sorry User does not exist with username '{params.username}'
+              Sorry User does not exist with username &#39;{params.username}&#39;
             </div>
             <div className='flex justify-center items-center h-screen'>
             <PacmanLoader  color="#ffffff" size={30}/>

@@ -50,7 +50,7 @@ const ReadMorePage = () => {
         </section>
         <section className="mb-8">
           <h2 className="text-2xl font-semibold mb-2">Start Your Journey Today</h2>
-          <p>Don't let funding be a barrier to your dreams. Join Get-Me-A-Chai and connect with a community that wants to see you succeed. Create your project today, share your vision, and start collecting the funds you need to make your project a reality.</p>
+          <p>Don&apos;t let funding be a barrier to your dreams. Join Get-Me-A-Chai and connect with a community that wants to see you succeed. Create your project today, share your vision, and start collecting the funds you need to make your project a reality.</p>
           <p>For more information or assistance, feel free to <a href="mailto:support@get-me-a-chai.com" className="text-blue-600 underline">contact our support team</a>. We’re here to help you every step of the way.</p>
         </section>
       </main>

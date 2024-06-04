@@ -19,14 +19,14 @@ const PaymentPage = ({ username }) => {
         setTimeout(() => {
             setLoading(false);
         }, 2000)
-    }, []);
+    });
 
     // console.log("first","currentUser",currentUser, "\nsetCurrentUser",setCurrentUser)
 
     useEffect(() => {
         getData()
         // console.log(getData())
-    }, [])
+    })
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -243,7 +243,7 @@ const PaymentPage = ({ username }) => {
                                             return (
                                                 <li key={i} className="my-2 flex gap-2 item-center">
                                                     <img src="icons/avatar.gif" className="h-fit" width={30} alt="user avatar" />
-                                                    <span>{p.name} <span className='font-bold'>₹{p.amount}</span>. Here is the message "{p.message}"</span>
+                                                    <span>{p.name} <span className='font-bold'>₹{p.amount}</span>. Here is the message &quot;{p.message}&quot;</span>
                                                 </li>
                                             );
                                         })
