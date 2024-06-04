@@ -1,9 +1,8 @@
 'use client'
 import React from 'react'
 import Link from 'next/link'
-import { useSession, signOut, updateSession } from "next-auth/react"
+import { useSession, signOut } from "next-auth/react"
 import { useState } from 'react'
-import Image from 'next/image'
 
 const Navbar = () => {
   const [showdropdown, setShowdropdown] = useState(false)
@@ -19,7 +18,7 @@ const Navbar = () => {
   return (
     <nav className=' bg-gray-900 text-white flex justify-between items-center px-4 md:h-16 flex-col md:flex-row'>
       <Link href={'/'} className='logo font-bold flex items-center justify-center'>
-        <Image src="/icons/tea.gif" height={44} width={44} alt="" />
+        <img src="icons/tea.gif" width={44} alt="" />
         <span className='md:text-xl text-2xl'>GetMeAChai!</span>
       </Link>
 

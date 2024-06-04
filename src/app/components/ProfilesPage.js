@@ -62,8 +62,8 @@ const ProfilesPage = () => {
             // Search profiles
             <ul>
               {filteredProfiles.map((profile) => (
-                <Link href={`/${profile.username}`}>
-                  <li key={profile.username} className="mb-4 p-4 border border-gray-200 rounded">
+                <Link key={profile.username} href={`/${profile.username}`}>
+                  <li className="mb-4 p-4 border border-gray-200 rounded">
                     <h2 className="text-2xl font-bold">{profile.name}</h2>
                     <p className="text-slate-200">@{profile.username}</p>
                     <p className="text-gray-200">Project: {profile.project || "! Nothing here"}</p>
@@ -81,8 +81,8 @@ const ProfilesPage = () => {
             <div className='my-5 font-bold'><p className='text-xl'>Top Fund Raisers</p></div>
             <ul>
               {profiles.map((profile) => (
-                <Link href={`/${profile.username}`}>
-                  <li key={profile.username} className="mb-4 p-4 border border-gray-200 rounded">
+                <Link key={profile.username} href={`/${profile.username}`}>
+                  <li className="mb-4 p-4 border border-gray-200 rounded">
                     <h2 className="text-2xl font-bold">{profile.name}</h2>
                     <p className="text-slate-200">@{profile.username}</p>
                     <p className="text-gray-200">Project: {profile.project || "! Nothing here"}</p>

@@ -1,5 +1,5 @@
 'use client'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useCallback } from 'react'
 import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import { fetchUser2, updateUser } from '@/actions/userActions'
@@ -16,15 +16,8 @@ const Dashboard = () => {
 
     // console.log(session)
 
-    useEffect(() => {
-        if (!session) {
-            router.push('/login')
-        } else {
-            getUserData()
-        }
-    })
 
-    const getUserData = async () => {
+    const getUserData = useCallback(async () => {
         try {
             const user = await fetchUser2(session.user.email)
             if (user) {
@@ -53,8 +46,16 @@ const Dashboard = () => {
                 transition: Slide
             })
         }
-    }
+    },[session])
 
+    useEffect(() => {
+        if (!session) {
+            router.push('/login')
+        } else {
+            getUserData()
+        }
+    },[router, getUserData, session])
+    
     const handleInput = (e) => {
         e.target.style.height = 'auto'; // Reset height
         e.target.style.height = `${e.target.scrollHeight}px`; // Set height based on scrollHeight

@@ -1,5 +1,5 @@
 'use client'
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,useCallback } from "react";
 import Script from "next/script";
 import { fetchPayments, fetchUser, initiate } from "@/actions/userActions";
 import { ToastContainer, toast, Slide } from 'react-toastify';
@@ -19,14 +19,9 @@ const PaymentPage = ({ username }) => {
         setTimeout(() => {
             setLoading(false);
         }, 2000)
-    });
+    }, []);
 
     // console.log("first","currentUser",currentUser, "\nsetCurrentUser",setCurrentUser)
-
-    useEffect(() => {
-        getData()
-        // console.log(getData())
-    })
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -38,21 +33,34 @@ const PaymentPage = ({ username }) => {
         return input.replace(/<[^>]*>?/gm, '');
     };
 
-    const getData = async () => {
+    const getData = useCallback(async () => {
         try {
             let getUser = await fetchUser(username)
+            // Convert complex objects to plain objects
+            getUser = JSON.parse(JSON.stringify(getUser))
             setCurrentUser(getUser)
+            
             let dbPayments = await fetchPayments(username)
+            // Convert complex objects to plain objects
+            dbPayments = dbPayments.map(payment => JSON.parse(JSON.stringify(payment)))
             setPayments(dbPayments)
-            // console.log("u", getUser);
-            // console.log("dbPayments", dbPayments);
         } catch (error) {
             console.error("Error getting Data :", error)
         }
-    }
+    }, [username])
+
+    useEffect(() => {
+        getData()
+    }, [getData])
+
+    // useEffect(() => {
+    //     // console.log(getData())
+    //     getData()
+    // },[getData])
 
     const getPayments = async () => {
         let dbPayments = await fetchPayments(username)
+        dbPayments = dbPayments.map(payment => JSON.parse(JSON.stringify(payment)))
         setPayments(dbPayments)
     }
 
@@ -243,7 +251,7 @@ const PaymentPage = ({ username }) => {
                                             return (
                                                 <li key={i} className="my-2 flex gap-2 item-center">
                                                     <img src="icons/avatar.gif" className="h-fit" width={30} alt="user avatar" />
-                                                    <span>{p.name} <span className='font-bold'>₹{p.amount}</span>. Here is the message &quot;{p.message}&quot;</span>
+                                                    <span>{p.name} <span className='font-bold'>₹{p.amount}</span>. Here is the message "{p.message}"</span>
                                                 </li>
                                             );
                                         })
