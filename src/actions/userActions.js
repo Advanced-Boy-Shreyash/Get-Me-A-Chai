@@ -71,7 +71,10 @@ const totalRaisedAmount = async (usernames) => {
     // Aggregate payments to get the total amount received by each user
     const payments = await Payment.aggregate([
       {
-        $match: { to_user: { $in: usernames } }
+        $match: {
+          to_user: { $in: usernames },
+          done: true
+        }
       },
       {
         $group: {

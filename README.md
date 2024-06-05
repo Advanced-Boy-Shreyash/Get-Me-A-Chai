@@ -1,6 +1,6 @@
 # Get Me A Chai
 
-[Deployment Link](get-me-a-chai)
+[https://fund-me-chai.vercel.app](get-me-a-chai)
 
 ## Project Description
 Get Me A Chai is a crowdfunding platform created using Next.js (app route), React, MongoDB, and Node.js. It is designed for developers who need funds to complete their projects. Fans and supporters of developers or project creators can support them by sending funds. Developers need a Razorpay account to receive funds and must generate a client ID and secret. 
