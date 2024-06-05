@@ -235,7 +235,7 @@ const PaymentPage = ({ username }) => {
                         </div>
                         { currentUser.project?
                         <div className="container  font-bold flex flex-col gap-2 bg-slate-900 p-5 mt-5 bg-rgb(0 9 29) rounded-xl w-[70vw]">
-                            <div className=" m-auto"> Project : {currentUser.project || `! No Active Project`}</div>
+                            <div className=" m-auto"> Project : {currentUser.project || `! No Active Project`} <Link className='text-blue-400' href={currentUser.projectLink}>[Link]</Link></div>
                             <div className=" m-auto">Project Description: {currentUser.projectDescription}</div>
                         </div>:<div>No active Project</div>}
                     </div>
